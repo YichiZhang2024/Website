@@ -1,0 +1,22 @@
+---
+title: "Research"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Current Projects
+
+### Evaluating Standard Error Estimators for Multilevel Models on Small Samples With Heteroscedasticity and Unbalanced Cluster Sizes
+
+- Compared the standard error estimators in multilevel models for small samples with heteroscedasticity and unbalanced cluster sizes using Monte Carlo simulation
+
+- Proposal accepted by the 2022 AERA Annual Meeting Division D Graduate Student In-Progress Research Gala
+
+### Bayesian Region of Measurement Equivalence (ROME) Approach for Establishing Measurement Invariance
+
+- Identify noninvariant items using Bayesian alignment method and effect size indices
+
+- Establish measurement invariance using the Bayesian Region of Measurement Equivalance (ROME) approach
+

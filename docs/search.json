@@ -2,20 +2,35 @@
   "articles": [
     {
       "path": "about.html",
-      "title": "About this site",
-      "description": "Some additional details about the website",
+      "title": "About Me",
+      "description": "Yichi Zhang 张亦弛",
       "author": [],
-      "contents": "\n\n\n\n",
-      "last_modified": "2021-12-23T10:50:56-08:00"
+      "contents": "\n\n\nHi, I am a third year Ph.D. students in the Quantitative Methods and Computational Psychology program at the University of Southern California (USC). I am from Shandong, China and my native language is mandarin. I pursued my bachelor degree at Dickinson College with double major in Mathematics and Psychology. My interest in using statistical tools to understand human behaviors led me to pursue a Phd degree in quantitative psychology.\nMy current research interests are measurement invariance, multilevel modeling, and robust methods. My advisors are Dr. Hok Chio(Mark) Lai (https://quantscience.rbind.io/) and Dr. Rand Wilcox. I am interested in exploring research questions related to fair and accurate psychological measurement using psychometric methods and statistical models. Check out the Research page for specific projects and Publication page for my publications. CV can be found here\n\n\n\n",
+      "last_modified": "2021-12-23T14:48:11-08:00"
     },
     {
       "path": "index.html",
-      "title": "My Website",
+      "title": "Yichi Zhang 张亦弛",
       "description": "Welcome to the website. I hope you enjoy it!\n",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-12-23T10:50:56-08:00"
+      "last_modified": "2021-12-23T14:48:12-08:00"
+    },
+    {
+      "path": "publications.html",
+      "title": "Publications",
+      "description": "Recent publications and conference presentations. ",
+      "author": [],
+      "contents": "\nPeer-Reviewed Articles (Selected)\n2021\n\nLai, M. H. C. and Y. Zhang (2021). “Classification accuracy of multidimensional tests: Quantifying the impact of noninvariance.”. Manuscript accepted for publication.\nLai, M. H. C., Y. Zhang, and J. Feng (2021). “Adjusting for measurement error in cluster means in multilevel modeling: Two numerically stable alternatives to latent-mean centering.” Submitted.\nZhang, Y., M. H. C. Lai, and G. J. Palardy (2021). “A Bayesian Region of Measurement Equivalence (ROME) Approach for Establishing Measurement Invariance.” Manuscript accepted for publication.\n\nConference Presentations\n2021\nZhang, Y. & Lai, M. H. C. (2021, August 12-14). Classification accuracy of multidimensional tests: Quantifying the impact of noninvariance [Poster Session]. American Psychological Association Annual Convention (APA), Online.\nZhang, Y. & Lai, M. H. C. (2021, July 20-23). Classification accuracy of multidimensional tests: Quantifying the impact of noninvariance [Oral Presentation]. Annual Meeting of the Psychometric Society (IMPS), College Park, MD, United States.\nZhang, R., Zhang, Y., & Lalonde, R. (2021, July 27-31). Examining multiculturalism-creativity link from the perspective of challenge and threat appraisals [Oral Presentation]. International Association of Cross-Cultural Psychology (IACCP), online.\n2020\nZhang, Y. & Lai, M. H. C. (2020, July 14-17). A Bayesian Region of Measurement Equivalence (ROME) Approach for Establishing Measurement Invariance [Poster Session]. Annual Meeting of the Psychometric Society (IMPS), College Park, MD, United States. Schedule\nZhang, Y. & Lai, M. H. C. (2020, June 2-3). A Bayesian Region of Measurement Equivalence (ROME) Approach for Establishing Measurement Invariance [Poster Session]. Modern Modeling Methods Conference (MMM), Storrs, CT, United States. (Conference canceled)\n\n\n\n",
+      "last_modified": "2021-12-23T14:48:13-08:00"
+    },
+    {
+      "path": "research.html",
+      "title": "Research",
+      "author": [],
+      "contents": "\nCurrent Projects\nEvaluating Standard Error Estimators for Multilevel Models on Small Samples With Heteroscedasticity and Unbalanced Cluster Sizes\nCompared the standard error estimators in multilevel models for small samples with heteroscedasticity and unbalanced cluster sizes using Monte Carlo simulation\nProposal accepted by the 2022 AERA Annual Meeting Division D Graduate Student In-Progress Research Gala\nBayesian Region of Measurement Equivalence (ROME) Approach for Establishing Measurement Invariance\nIdentify noninvariant items using Bayesian alignment method and effect size indices\nEstablish measurement invariance using the Bayesian Region of Measurement Equivalance (ROME) approach\n\n\n\n",
+      "last_modified": "2021-12-23T14:48:13-08:00"
     }
   ],
-  "collections": []
+  "collections": ["posts/posts.json"]
 }
