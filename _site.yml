@@ -25,3 +25,4 @@ navbar:
     - icon: fa fa-linkedin
       href: https://www.linkedin.com/in/yichi-zhang-312164201/ 
 output: distill::distill_article
+baseurl: 'http://yichiyczhang.netlify.app' 
