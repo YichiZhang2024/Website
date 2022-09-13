@@ -1,7 +1,7 @@
 ---
 title: "Publications"
 description: |
-  Recent publications and conference presentations. 
+  My recent publications and conference presentations. 
 ---
 
 ```{r setup, include=FALSE}
@@ -13,7 +13,8 @@ library(RefManageR)
 # Grab bibTeX using DOIs, and save to pubs.bib
 RefManageR::GetBibEntryWithDOI(
   unique(
-    c("10.1080/10705511.2021.1977936")
+    c("10.1080/10705511.2021.1977936",
+      "10.1037/met0000455")
   ), 
   temp.file = "pubs.bib", 
   delete.file = FALSE)
@@ -21,31 +22,27 @@ RefManageR::GetBibEntryWithDOI(
 ref <- c(
   BibEntry(
     bibtype = "unpublished", 
-    key = "zhang2021", 
-    title = "A Bayesian Region of Measurement Equivalence (ROME) Approach for Establishing Measurement Invariance.", 
-    author = "Zhang, Yichi and Lai, Mark H. C. and Palardy, Gregory J.", 
-    year = "2021", 
-    journal = "Psychological Methods", 
-    date = "2021-10-05", 
-    pubstate = "Manuscript accepted for publication"
-  ),
-  BibEntry(
-    bibtype = "unpublished", 
     key = "Lai2021b", 
     title = "Adjusting for measurement error in cluster means in multilevel modeling: Two numerically stable alternatives to latent-mean centering.", 
     author = "Lai, Mark H. C. and Zhang, Yichi and Feng, Ji", 
     year = "2021", 
-    pubstate = "submitted"
+    pubstate = "Under review"
   ),
   BibEntry(
     bibtype = "unpublished", 
-    key = "Lai2021a", 
-    title = "Classification accuracy of multidimensional tests: Quantifying the impact of noninvariance. ", 
-    author = "Lai, Mark H. C. and Zhang, Yichi", 
-    year = "2021", 
-    journal = "Structural Equation Modeling", 
-    date = "2021-09-03", 
-    pubstate = "Manuscript accepted for publication"
+    key = "Tse2021", 
+    title = "Does strict invariance matter? valid group mean comparisons with ordered-categorical items",
+    author = "Tse, Winnie Wing-Yee and Lai, Mark H. C. and Zhang, Yichi", 
+    year = "2022", 
+    pubstate = "In progress"
+  ),
+  BibEntry(
+    bibtype = "unpublished", 
+    key = "Zhang2021", 
+    title = "Evaluating Standard Error Estimators for Multilevel Models on Small Samples With Heteroscedasticity and Unbalanced Cluster Sizes",
+    author = "Zhang, Yichi and Lai, Mark H. C.", 
+    year = "2022", 
+    pubstate = "In progress"
   )
 )
 WriteBib(bib = ref, 
@@ -68,6 +65,12 @@ myBib <- ReadBib(here::here("pubs.bib"), check = FALSE)
 
 ## Peer-Reviewed Articles (Selected)
 
+### 2022
+
+```{r, results = "asis"}
+myBib[date = "2022"]
+```
+
 ### 2021
 
 ```{r, results = "asis"}
@@ -75,6 +78,14 @@ myBib[date = "2021"]
 ```
 
 ## Conference Presentations
+
+### 2022
+
+- Zhang, Y. Lai, M. H. C. (2022, July 11-15). *Bayesian Region of Measurement Equivalence Approach with Alignment* [Oral Presentation]. Annual Meeting of the Psychometric Society (IMPS), Bologna, Italy.
+
+- Zhang, Y. Lai, M. H. C. (2022, July 11-15). *Inferences with Multilevel Model: What if You have Small, Unbalanced, Heteroscedastic Samples?* [Poster Presentation]. Annual Meeting of the Psychometric Society (IMPS), Bologna, Italy.
+
+- Zhang, Y. Lai, M. H. C. (2022, April 21-26). *Evaluating Standard Error Estimators for Multilevel Models on Small Samples With Heteroscedasticity and Unbalanced Cluster Sizes.* American Educational Research Association Annual Meeting, San Diego, Ca, United States.
 
 ### 2021
 
