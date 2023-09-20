@@ -10,17 +10,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Bayesian Region of Measurement Equivalence (ROME) Approach for Establishing Measurement Invariance
 
-- Proposed a Bayesian approach to establish measurement invariance using effect size indices
+Psychological scales are widely used when making decisions in personnel selections and college admissions. However, as the current generation has become more racially and ethnically diverse, people might react differently to scale items due to their diverse backgrounds and experiences. Thus, some scale items may contain systematic bias that leads to a higher score for some subgroups. While there is abundant research focusing on detecting such bias, most of them rely on the Null hypothesis testing (NHST) framework, with little attention to the degree of bias and the practical impact of bias. 
 
-- Incorporated the alignment optimization to automate measurement invariance testing 
-
-- Evaluate the performance using Monte Carlo simulation
-
-- Extend to many group comparisons 
+I proposed a [Bayesian region of measurement equivalence (ROME) method](https://psycnet.apa.org/fulltext/2022-19007-001.html) for establishing measurement invariance, which allows researchers to quantify the degree of item bias on total scale scores and decide whether the group difference caused by biased indicators is negligible. This method allows researchers to interpret the noninvariance from a practical decision-making perspective. I applied this method on the National Assessment of Educational Progress data during my internship at the American Institutes for Research in 2022. 
 
 
 ### Evaluating Standard Error Estimators for Multilevel Models on Small Samples With Heteroscedasticity and Unbalanced Cluster Sizes
 
-- Compared two small-sample corrections for fixed-effects inferences in multilevel models with heteroscedastic and unbalanced data using Monte Carlo simulation
+Multilevel modeling (MLM) is commonly used in psychological research to model clustered data. However, data in applied research usually come from small samples and have heteroscedastic variances and unbalanced cluster sizes, which violates one of the essential assumptions of MLM - homogeneity of variance. While the fixed-effect estimates produced by the maximum likelihood method remain unbiased, the standard errors for the fixed effects are mis-estimated, resulting in inaccurate inferences and inflated or deflated Type I error rates. Small-sample corrections, such as the Kenward-Roger (KR) adjustment and the adjusted cluster-robust standard errors (CR-SEs), have been proposed in literature.
 
-- Presented at AERA 2022 Annual Conference and IMPS 2022 Annual Meeting
+My research compares KR with random slope (RS) models and the adjusted CR-SEs with Ordinary Least Squares (OLS), random intercept (RI) and RS models to analyze small, heteroscedastic, clustered data using a Monte Carlo simulation. I illustrated the use of these two small sample corrections on empirical data and provide guidelines for applied researchers. 
+
+### Evaluating Subgroup Analysis Indices and Guidelines for Automated Scoring Algorithm
+
+Automated Essay Scoring (AES) is an application of artificial intelligence that predicts the scores humans would assign to essays based on the content and features of those essays. Williamson, Xi, and Breyer (2012) offered guidelines for evaluating an AES system, and those guidelines recommend that stakeholders evaluate fairness by examining scores assigned to demographic subgroups with respect to distribution shifts and levels of agreement between AES and human scores.
+
+This study evaluates the performance of AES agreement indices used for subgroup analyses in terms of these flag rates, and we do so in the context of a simulation in which we vary sample size, distribution shape, and the number of score points when data are generated to produce predetermined levels of agreement or mean score offset between human scores and AES.

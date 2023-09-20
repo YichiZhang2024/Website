@@ -13,7 +13,8 @@ library(RefManageR)
 # Grab bibTeX using DOIs, and save to pubs.bib
 RefManageR::GetBibEntryWithDOI(
   unique(
-    c("10.1080/10705511.2021.1977936",
+    c("10.1177/10731911231198214",
+      "10.1080/10705511.2021.1977936",
       "10.1037/met0000455")
   ), 
   temp.file = "pubs.bib", 
@@ -26,7 +27,7 @@ ref <- c(
     title = "Adjusting for measurement error in cluster means in multilevel modeling: Two numerically stable alternatives to latent-mean centering.", 
     author = "Lai, Mark H. C. and Zhang, Yichi and Feng, Ji", 
     year = "2021", 
-    pubstate = "Under review"
+    pubstate = "(Second round revision submitted; Multivariate Behavioral Research)"
   ),
   BibEntry(
     bibtype = "unpublished", 
@@ -34,7 +35,7 @@ ref <- c(
     title = "Does strict invariance matter? valid group mean comparisons with ordered-categorical items",
     author = "Tse, Winnie Wing-Yee and Lai, Mark H. C. and Zhang, Yichi", 
     year = "2022", 
-    pubstate = "In progress"
+    pubstate = "(Accepted on 09/18/2023 by Behavior Research Methods)"
   ),
   BibEntry(
     bibtype = "unpublished", 
@@ -42,7 +43,15 @@ ref <- c(
     title = "Evaluating Standard Error Estimators for Multilevel Models on Small Samples With Heteroscedasticity and Unbalanced Cluster Sizes",
     author = "Zhang, Yichi and Lai, Mark H. C.", 
     year = "2022", 
-    pubstate = "In progress"
+    pubstate = "(Revision; Submitted to Behavior Research Methods)"
+  ),
+  BibEntry(
+    bibtype = "unpublished",
+    key = "Zhang2023",
+    title = "Bootstrap methods for multilevel data when asymptotic distributional assumptions are not tenable",
+    author = "Zhang, Yichi and Tse, Winnie Wing-Yee and Lai, Mark H. C.",
+    year = "2023",
+    pubstate = "Dependent Data in Social Sciences Research: Forms, Issues, and Methods of Analysis.(Under review)"
   )
 )
 WriteBib(bib = ref, 
@@ -63,7 +72,13 @@ BibOptions(check.entries = FALSE,
 myBib <- ReadBib(here::here("pubs.bib"), check = FALSE)
 ```
 
-## Peer-Reviewed Articles (Selected)
+## Peer-Reviewed Articles 
+
+### 2023
+
+```{r, results = "asis"}
+myBib[date = "2023"]
+```
 
 ### 2022
 
@@ -79,13 +94,22 @@ myBib[date = "2021"]
 
 ## Conference Presentations
 
+### 2023
+
+- Zhang, Y. & Lai, M. H. C. (2023, July 25-28). *Alignment with Bayesian Region of Measurement Equivalence (ABROME) Approach for Multiple Groups Comparisons* [Oral Presentation]. Annual Meeting of the Psychometric Society (IMPS), College Park, Maryland.
+
+- Zhang, Y., Kim, Y., &  Zheng, X. (2023, April 12-15). *Investigating Measurement Invariance in NAEP Student Questionnaire Index Items* [Oral Presentation]. The National Council on Measurement in Education (NCME), Chicago, Illinois.
+
+- Lai, M. H. C., Zhang, Y., & Feng J.(2023, April 13-16). *An empirical Bayes cluster-mean approach to correct for sampling error in between-cluster effects* [Poster session]. American Educational Research Association Annual Meeting (AERA), Chicago, Illinois.
+
+
 ### 2022
 
-- Zhang, Y. Lai, M. H. C. (2022, July 11-15). *Bayesian Region of Measurement Equivalence Approach with Alignment* [Oral Presentation]. Annual Meeting of the Psychometric Society (IMPS), Bologna, Italy.
+- Zhang, Y. & Lai, M. H. C. (2022, July 11-15). *Bayesian Region of Measurement Equivalence Approach with Alignment* [Oral Presentation]. Annual Meeting of the Psychometric Society (IMPS), Bologna, Italy.
 
-- Zhang, Y. Lai, M. H. C. (2022, July 11-15). *Inferences with Multilevel Model: What if You have Small, Unbalanced, Heteroscedastic Samples?* [Poster Presentation]. Annual Meeting of the Psychometric Society (IMPS), Bologna, Italy.
+- Zhang, Y. & Lai, M. H. C. (2022, July 11-15). *Inferences with Multilevel Model: What if You have Small, Unbalanced, Heteroscedastic Samples?* [Poster Presentation]. Annual Meeting of the Psychometric Society (IMPS), Bologna, Italy.
 
-- Zhang, Y. Lai, M. H. C. (2022, April 21-26). *Evaluating Standard Error Estimators for Multilevel Models on Small Samples With Heteroscedasticity and Unbalanced Cluster Sizes.* American Educational Research Association Annual Meeting, San Diego, Ca, United States.
+- Zhang, Y. & Lai, M. H. C. (2022, April 21-26). *Evaluating Standard Error Estimators for Multilevel Models on Small Samples With Heteroscedasticity and Unbalanced Cluster Sizes.* American Educational Research Association Annual Meeting, San Diego, Ca, United States.
 
 ### 2021
 
