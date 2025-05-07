@@ -6,6 +6,16 @@ title: "Research"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+My research interests include:
+
+- Measurement bias and fairness in surveys and assessments
+
+- Statistical methods for robust, reproducible research
+
+- Applied machine learning in social and behavioral sciences
+
+- Quantitative methods in UX research, education, and healthcare
+
 ## Current Projects
 
 ### Bayesian Region of Measurement Equivalence (ROME) Approach for Establishing Measurement Invariance
@@ -25,4 +35,4 @@ My research compares KR with random slope (RS) models and the adjusted CR-SEs wi
 
 Automated Essay Scoring (AES) is an application of artificial intelligence that predicts the scores humans would assign to essays based on the content and features of those essays. Williamson, Xi, and Breyer (2012) offered guidelines for evaluating an AES system, and those guidelines recommend that stakeholders evaluate fairness by examining scores assigned to demographic subgroups with respect to distribution shifts and levels of agreement between AES and human scores.
 
-This study evaluates the performance of AES agreement indices used for subgroup analyses in terms of these flag rates, and we do so in the context of a simulation in which we vary sample size, distribution shape, and the number of score points when data are generated to produce predetermined levels of agreement or mean score offset between human scores and AES.
+In my research, I evaluated the performance of AES agreement indices used for subgroup analyses using a Monte Carlo simulation, in which I varied sample size, distribution shape, and the number of score points when data are generated to produce predetermined levels of agreement or mean score offset between human scores and AES. This project was presented at the 2024 National Council on Measurement in Education (NCME) Annual Meeting.

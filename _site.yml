@@ -13,7 +13,7 @@ navbar:
     - text: "Publications"
       href: publications.html
     - text: "Blog"
-      href: index.html
+      href: blog.html
     - text: "Applications"
       menu:
         - text: "Unbiasr Shiny App"

@@ -21,7 +21,7 @@
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -32,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -458,8 +458,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
 
   <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-  <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
   <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
   <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -829,9 +829,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     display: none !important;
   }
 
+  hr.section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0px;
+  }
+
+
+  d-byline {
+    border-top: none;
+  }
+
   d-article {
     padding-top: 2.5rem;
     padding-bottom: 30px;
+    border-top: none;
   }
 
   d-appendix {
@@ -926,6 +938,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article div.sourceCode pre {
     padding-left: 18px;
     font-size: 14px;
+  }
+
+  /* tweak for Pandoc numbered line within distill */
+  d-article pre.numberSource code > span {
+      left: -2em;
   }
 
   d-article pre {
@@ -1687,6 +1704,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // create d-title
     $('.d-title').changeElementType('d-title');
 
+    // separator
+    var separator = '<hr class="section-separator" style="clear: both"/>';
+    // prepend separator above appendix
+    $('.d-byline').before(separator);
+    $('.d-article').before(separator);
+
     // create d-byline
     var byline = $('<d-byline></d-byline>');
     $('.d-byline').replaceWith(byline);
@@ -1764,8 +1787,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     $('.distill-force-highlighting-css').parent().remove();
 
     // remove empty line numbers inserted by pandoc when using a
-    // custom syntax highlighting theme
-    $('code.sourceCode a:empty').remove();
+    // custom syntax highlighting theme, except when numbering line
+    // in code chunk
+    $('pre:not(.numberLines) code.sourceCode a:empty').remove();
 
     // load distill framework
     load_distill_framework();
@@ -1791,12 +1815,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       // add orcid ids
       $('.authors-affiliations').find('.author').each(function(i, el) {
         var orcid_id = front_matter.authors[i].orcidID;
+        var author_name = front_matter.authors[i].author
         if (orcid_id) {
           var a = $('<a></a>');
           a.attr('href', 'https://orcid.org/' + orcid_id);
           var img = $('<img></img>');
           img.addClass('orcid-id');
-          img.attr('alt', 'ORCID ID');
+          img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
           img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
           a.append(img);
           $(this).append(a);
@@ -2074,7 +2099,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2109,7 +2134,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <a href="about.html">About</a>
 <a href="research.html">Research</a>
 <a href="publications.html">Publications</a>
-<a href="index.html">Blog</a>
+<a href="blog.html">Blog</a>
 <div class="nav-dropdown">
 <button class="nav-dropbtn">
 Applications
@@ -2137,6 +2162,7 @@ Applications
 
 <div class="d-title">
 <h1>Publications</h1>
+
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 <p><p>My recent publications and conference presentations.</p></p>
@@ -2145,69 +2171,94 @@ Applications
 
 <div class="d-article">
 <h2 id="peer-reviewed-articles">Peer-Reviewed Articles</h2>
-<h3 id="section">2023</h3>
+<h3 id="section">2025</h3>
+<div class="layout-chunk" data-layout="l-body">
+<p>Lai, M. H. C., Y. Zhang, M. Ozcan, et al. (2025). “f MACS  :
+Generalizing d MACS Effect Size for Measurement Noninvariance
+with Multiple Groups and Multiple Grouping Variables”. In:
+<em>Structural Equation Modeling: A Multidisciplinary Journal</em>,
+p. 1–9. ISSN: 1532-8007. DOI:
+<a href="https://doi.org/10.1080%2F10705511.2025.2484812">10.1080/10705511.2025.2484812</a>.</p>
+</div>
+<h3 id="section-1">2024</h3>
+<div class="layout-chunk" data-layout="l-body">
+<p>Lai, M. H. C., Y. Zhang, and F. Ji (2024). “Correcting for
+Sampling Error in between-Cluster Effects: An Empirical Bayes
+Cluster-Mean Approach with Finite Population Corrections”. In:
+<em>Multivariate Behavioral Research</em> 59.3, p. 584–598. ISSN:
+1532-7906. DOI:
+<a href="https://doi.org/10.1080%2F00273171.2024.2307034">10.1080/00273171.2024.2307034</a>.</p>
+<p>Zhang, Y. and M. H. C. Lai (2024a). “Bayesian Region of
+Measurement Equivalence (ROME) approach with alignment”.
+(Under Review).</p>
+<p>Zhang, Y. and M. H. C. Lai (2024b). “Evaluating two
+small-sample corrections for fixed-effects standard errors and
+inferences in multilevel models with heteroscedastic,
+unbalanced, clustered data”. In: <em>Behavior Research Methods</em>
+56.6, p. 5930–5946. ISSN: 1554-3528. DOI:
+<a href="https://doi.org/10.3758%2Fs13428-023-02325-9">10.3758/s13428-023-02325-9</a>.</p>
+<p>Zhang, Y., W. W. Tse, and M. H. C. Lai (2024). “Bootstrap
+methods for multilevel data when asymptotic distributional
+assumptions are not tenable”. Dependent Data in Social
+Sciences Research: Forms, Issues, and Methods of Analysis.</p>
+</div>
+<h3 id="section-2">2023</h3>
 <div class="layout-chunk" data-layout="l-body">
 <p>Ozturk, E. D., Y. Zhang, M. H. C. Lai, et al. (2023).
 “Measurement Invariance of the Neurobehavioral Symptom
 Inventory in Male and Female Million Veteran Program Enrollees
 Completing the Comprehensive Traumatic Brain Injury
-Evaluation”. In: <em>Assessment</em>. DOI:
+Evaluation”. In: <em>Assessment</em> 31.5, p. 967–979. ISSN:
+1552-3489. DOI:
 <a href="https://doi.org/10.1177%2F10731911231198214">10.1177/10731911231198214</a>.</p>
+<p>Tse, W. W., M. H. C. Lai, and Y. Zhang (2023). “Does strict
+invariance matter? Valid group mean comparisons with
+ordered-categorical items”. In: <em>Behavior Research Methods</em>
+56.4, p. 3117–3139. ISSN: 1554-3528. DOI:
+<a href="https://doi.org/10.3758%2Fs13428-023-02247-6">10.3758/s13428-023-02247-6</a>.</p>
 <p>Zhang, Y., M. H. C. Lai, and G. J. Palardy (2023). “A Bayesian
 region of measurement equivalence (ROME) approach for
 establishing measurement invariance.” In: <em>Psychological
-Methods</em> 28.4, pp. 993-1004. DOI:
+Methods</em> 28.4, p. 993–1004. ISSN: 1082-989X. DOI:
 <a href="https://doi.org/10.1037%2Fmet0000455">10.1037/met0000455</a>.</p>
-<p>Zhang, Y., W. W. Tse, and M. H. C. Lai (2023). “Bootstrap
-methods for multilevel data when asymptotic distributional
-assumptions are not tenable”. Dependent Data in Social
-Sciences Research: Forms, Issues, and Methods of
-Analysis.(Under review).</p>
 </div>
-<h3 id="section-1">2022</h3>
+<h3 id="section-3">2022</h3>
 <div class="layout-chunk" data-layout="l-body">
 <p>Lai, M. H. C. and Y. Zhang (2022). “Classification Accuracy of
 Multidimensional Tests: Quantifying the Impact of
 Noninvariance”. In: <em>Structural Equation Modeling: A
-Multidisciplinary Journal</em> 29.4, pp. 620-629. DOI:
+Multidisciplinary Journal</em> 29.4, p. 620–629. ISSN: 1532-8007.
+DOI:
 <a href="https://doi.org/10.1080%2F10705511.2021.1977936">10.1080/10705511.2021.1977936</a>.</p>
-<p>Tse, W. W., M. H. C. Lai, and Y. Zhang (2022). “Does strict
-invariance matter? valid group mean comparisons with
-ordered-categorical items”. (Accepted on 09/18/2023 by
-Behavior Research Methods).</p>
-<p>Zhang, Y. and M. H. C. Lai (2022). “Evaluating Standard Error
-Estimators for Multilevel Models on Small Samples With
-Heteroscedasticity and Unbalanced Cluster Sizes”. (Revision;
-Submitted to Behavior Research Methods).</p>
-</div>
-<h3 id="section-2">2021</h3>
-<div class="layout-chunk" data-layout="l-body">
-<p>Lai, M. H. C., Y. Zhang, and J. Feng (2021). “Adjusting for
-measurement error in cluster means in multilevel modeling: Two
-numerically stable alternatives to latent-mean centering.”
-(Second round revision submitted; Multivariate Behavioral
-Research).</p>
 </div>
 <h2 id="conference-presentations">Conference Presentations</h2>
-<h3 id="section-3">2023</h3>
+<h3 id="section-4">2025</h3>
+<ul>
+<li>Zhang, Y., &amp; Lai, M. H. C. (2025, April 23-26). <em>Bayesian Region of Measurement Equivalence (ROME) Framework With Multilevel Confirmatory Factor Analysis</em> [Poster Session]. The National Council on Measurement in Education (NCME), Dever, Colorado.</li>
+</ul>
+<h3 id="section-5">2024</h3>
+<ul>
+<li>Zhang, Y., &amp; Wolfe, E. W. (2024, April 11-14). <em>Evaluating subgroup analysis indices and guidelines for automated scoring algorithm</em> [Poster session]. The National Council on Measurement in Education (NCME), Philadelphia, Pennsylvania.</li>
+</ul>
+<h3 id="section-6">2023</h3>
 <ul>
 <li><p>Zhang, Y. &amp; Lai, M. H. C. (2023, July 25-28). <em>Alignment with Bayesian Region of Measurement Equivalence (ABROME) Approach for Multiple Groups Comparisons</em> [Oral Presentation]. Annual Meeting of the Psychometric Society (IMPS), College Park, Maryland.</p></li>
 <li><p>Zhang, Y., Kim, Y., &amp; Zheng, X. (2023, April 12-15). <em>Investigating Measurement Invariance in NAEP Student Questionnaire Index Items</em> [Oral Presentation]. The National Council on Measurement in Education (NCME), Chicago, Illinois.</p></li>
 <li><p>Lai, M. H. C., Zhang, Y., &amp; Feng J.(2023, April 13-16). <em>An empirical Bayes cluster-mean approach to correct for sampling error in between-cluster effects</em> [Poster session]. American Educational Research Association Annual Meeting (AERA), Chicago, Illinois.</p></li>
 </ul>
-<h3 id="section-4">2022</h3>
+<h3 id="section-7">2022</h3>
 <ul>
 <li><p>Zhang, Y. &amp; Lai, M. H. C. (2022, July 11-15). <em>Bayesian Region of Measurement Equivalence Approach with Alignment</em> [Oral Presentation]. Annual Meeting of the Psychometric Society (IMPS), Bologna, Italy.</p></li>
 <li><p>Zhang, Y. &amp; Lai, M. H. C. (2022, July 11-15). <em>Inferences with Multilevel Model: What if You have Small, Unbalanced, Heteroscedastic Samples?</em> [Poster Presentation]. Annual Meeting of the Psychometric Society (IMPS), Bologna, Italy.</p></li>
 <li><p>Zhang, Y. &amp; Lai, M. H. C. (2022, April 21-26). <em>Evaluating Standard Error Estimators for Multilevel Models on Small Samples With Heteroscedasticity and Unbalanced Cluster Sizes.</em> American Educational Research Association Annual Meeting, San Diego, Ca, United States.</p></li>
 </ul>
-<h3 id="section-5">2021</h3>
+<h3 id="section-8">2021</h3>
 <ul>
 <li>Zhang, Y. &amp; Lai, M. H. C. (2021, August 12-14). <em>Classification accuracy of multidimensional tests: Quantifying the impact of noninvariance</em> [Poster Session]. American Psychological Association Annual Convention (APA), Online.</li>
 <li>Zhang, Y. &amp; Lai, M. H. C. (2021, July 20-23). <em>Classification accuracy of multidimensional tests: Quantifying the impact of noninvariance</em> [Oral Presentation]. Annual Meeting of the Psychometric Society (IMPS), College Park, MD, United States.</li>
 <li>Zhang, R., Zhang, Y., &amp; Lalonde, R. (2021, July 27-31). <em>Examining multiculturalism-creativity link from the perspective of challenge and threat appraisals</em> [Oral Presentation]. International Association of Cross-Cultural Psychology (IACCP), online.</li>
 </ul>
-<h3 id="section-6">2020</h3>
+<h3 id="section-9">2020</h3>
 <ul>
 <li>Zhang, Y. &amp; Lai, M. H. C. (2020, July 14-17). <em>A Bayesian Region of Measurement Equivalence (ROME) Approach for Establishing Measurement Invariance</em> [Poster Session]. Annual Meeting of the Psychometric Society (IMPS), College Park, MD, United States. <a href="https://www.psychometricsociety.org/sites/main/files/file-attachments/imps_2020_virtual_schedule_g1.pdf?1594692842">Schedule</a></li>
 <li>Zhang, Y. &amp; Lai, M. H. C. (2020, June 2-3). <em>A Bayesian Region of Measurement Equivalence (ROME) Approach for Establishing Measurement Invariance</em> [Poster Session]. Modern Modeling Methods Conference (MMM), Storrs, CT, United States. (Conference canceled)</li>

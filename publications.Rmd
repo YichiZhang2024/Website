@@ -15,7 +15,14 @@ RefManageR::GetBibEntryWithDOI(
   unique(
     c("10.1177/10731911231198214",
       "10.1080/10705511.2021.1977936",
-      "10.1037/met0000455")
+      "10.1037/met0000455",
+      "10.1080/10705511.2025.2484812",
+      "10.1080/00273171.2024.2307034",
+      "10.3758/s13428-023-02325-9",
+      "10.1177/10731911231198214",
+      "10.3758/s13428-023-02247-6",
+      "10.1007/978-3-031-563188_13"
+      )
   ), 
   temp.file = "pubs.bib", 
   delete.file = FALSE)
@@ -23,35 +30,19 @@ RefManageR::GetBibEntryWithDOI(
 ref <- c(
   BibEntry(
     bibtype = "unpublished", 
-    key = "Lai2021b", 
-    title = "Adjusting for measurement error in cluster means in multilevel modeling: Two numerically stable alternatives to latent-mean centering.", 
-    author = "Lai, Mark H. C. and Zhang, Yichi and Feng, Ji", 
-    year = "2021", 
-    pubstate = "(Second round revision submitted; Multivariate Behavioral Research)"
-  ),
-  BibEntry(
-    bibtype = "unpublished", 
-    key = "Tse2021", 
-    title = "Does strict invariance matter? valid group mean comparisons with ordered-categorical items",
-    author = "Tse, Winnie Wing-Yee and Lai, Mark H. C. and Zhang, Yichi", 
-    year = "2022", 
-    pubstate = "(Accepted on 09/18/2023 by Behavior Research Methods)"
-  ),
-  BibEntry(
-    bibtype = "unpublished", 
-    key = "Zhang2021", 
-    title = "Evaluating Standard Error Estimators for Multilevel Models on Small Samples With Heteroscedasticity and Unbalanced Cluster Sizes",
+    key = "Zhang2024", 
+    title = "Bayesian Region of Measurement Equivalence (ROME) approach with alignment",
     author = "Zhang, Yichi and Lai, Mark H. C.", 
-    year = "2022", 
-    pubstate = "(Revision; Submitted to Behavior Research Methods)"
+    year = "2024", 
+    pubstate = "(Under Review)"
   ),
   BibEntry(
     bibtype = "unpublished",
-    key = "Zhang2023",
+    key = "Zhang2024",
     title = "Bootstrap methods for multilevel data when asymptotic distributional assumptions are not tenable",
     author = "Zhang, Yichi and Tse, Winnie Wing-Yee and Lai, Mark H. C.",
-    year = "2023",
-    pubstate = "Dependent Data in Social Sciences Research: Forms, Issues, and Methods of Analysis.(Under review)"
+    year = "2024",
+    pubstate = "Dependent Data in Social Sciences Research: Forms, Issues, and Methods of Analysis."
   )
 )
 WriteBib(bib = ref, 
@@ -74,6 +65,18 @@ myBib <- ReadBib(here::here("pubs.bib"), check = FALSE)
 
 ## Peer-Reviewed Articles 
 
+### 2025
+
+```{r, results = "asis"}
+myBib[date = "2025"]
+```
+
+### 2024
+
+```{r, results = "asis"}
+myBib[date = "2024"]
+```
+
 ### 2023
 
 ```{r, results = "asis"}
@@ -86,13 +89,15 @@ myBib[date = "2023"]
 myBib[date = "2022"]
 ```
 
-### 2021
-
-```{r, results = "asis"}
-myBib[date = "2021"]
-```
-
 ## Conference Presentations
+
+### 2025
+
+- Zhang, Y., & Lai, M. H. C. (2025, April 23-26). *Bayesian Region of Measurement Equivalence (ROME) Framework With Multilevel Confirmatory Factor Analysis* [Poster Session]. The National Council on Measurement in Education (NCME), Dever, Colorado.
+
+### 2024
+
+- Zhang, Y., & Wolfe, E. W. (2024, April 11-14). *Evaluating subgroup analysis indices and guidelines for automated scoring algorithm* [Poster session]. The National Council on Measurement in Education (NCME), Philadelphia, Pennsylvania.
 
 ### 2023
 
