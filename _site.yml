@@ -21,7 +21,7 @@ navbar:
         - text: "NISS 2022 Competition"
           href: https://uncover-data-stories.shinyapps.io/NAEP-Reading-Scores/
     - icon: fab fa-github
-      href: https://github.com/YichiZhang2024
+      href: https://yichizhang2024.github.io/portfolio/
     - icon: fa fa-linkedin
       href: https://www.linkedin.com/in/yichi-zhang-312164201/ 
 output: distill::distill_article
